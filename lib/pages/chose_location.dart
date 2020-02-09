@@ -49,7 +49,7 @@ class _ChooseLocationState extends State<ChooseLocation> {
                     ),
                   ),
                   leading: CircleAvatar(
-                    backgroundImage: AssetImage('assets/img/${locations[index].flag}'),
+                    backgroundImage: AssetImage('assets/${locations[index].flag}'),
                   ),
                 ),
               ),
