@@ -14,7 +14,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
 
     // retrieve the imported data from loading.dart
-    data = ModalRoute.of(context).settings.arguments;
+    data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
     print(data);
 
     // day and night settings
@@ -27,7 +27,7 @@ class _HomeState extends State<Home> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('assets/img/$bgImage'),
+            image: AssetImage('assets/$bgImage'),
             fit: BoxFit.cover,
           ),
         ),
@@ -36,8 +36,16 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.fromLTRB(0, 130.0, 0, 8.0),
               child: FlatButton.icon(
-                onPressed: () {
-                  Navigator.pushNamed(context, '/location');
+                onPressed: () async {
+                  dynamic result = await Navigator.pushNamed(context, '/location');
+                  setState(() {
+                    data = {
+                      'location': result['location'],
+                      'time': result['time'],
+                      'flag': result['flag'],
+                      'isDay': result['isDay'],
+                    };
+                  });
                 },
                 icon: Icon(Icons.add_location),
                 label: Text('Edit location',
