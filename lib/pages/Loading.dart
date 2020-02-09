@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:multipageapp/services/world_time.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class Loading extends StatefulWidget {
   @override
@@ -15,7 +16,8 @@ class _LoadingState extends State<Loading> {
     Navigator.pushReplacementNamed(context, '/home', arguments: {
       'location': instance.location,
       'time': instance.time,
-      'flag': instance.flag
+      'flag': instance.flag,
+      'isDay': instance.isDay,
     });
   }
 
@@ -28,13 +30,24 @@ class _LoadingState extends State<Loading> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.purple[800],
       body: SafeArea(
           child: Center(
-            child: Text('Loading ...',
-              style: TextStyle(
-                fontSize: 22.0,
-                fontWeight: FontWeight.bold,
-              ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                SpinKitCubeGrid(
+                  color: Colors.white,
+                  size: 100.0,
+                ),
+                SizedBox(height: 30.0,),
+                Text('Loading ...',
+                  style: TextStyle(
+                    fontSize: 35.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
             ),
           ),
       ),
