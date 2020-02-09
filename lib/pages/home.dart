@@ -7,8 +7,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  Map data = {};
+
   @override
   Widget build(BuildContext context) {
+
+    // retrieve the imported data from loading.dart
+    data = ModalRoute.of(context).settings.arguments;
+
+
     return Scaffold(
       backgroundColor: Colors.amberAccent,
       appBar: AppBar(
@@ -26,16 +34,38 @@ class _HomeState extends State<Home> {
       ),
       body: Column(
         children: <Widget>[
-          FlatButton.icon(
-            onPressed: () {
-              Navigator.pushNamed(context, '/location');
-            },
-            icon: Icon(Icons.add_location),
-            label: Text('Edit location',
-              style: TextStyle(
-                fontSize: 22.0,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 130.0, 0, 8.0),
+            child: FlatButton.icon(
+              onPressed: () {
+                Navigator.pushNamed(context, '/location');
+              },
+              icon: Icon(Icons.add_location),
+              label: Text('Edit location',
+                style: TextStyle(
+                  fontSize: 22.0,
+                ),
               ),
             ),
+          ),
+          SizedBox(height: 20.0,),
+          Text(data['location'],
+            style: TextStyle(
+              fontSize: 38.0,
+              letterSpacing: 1.8,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Text(data['time'],
+                style: TextStyle(
+                  fontSize: 66.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
         ],
       ),
