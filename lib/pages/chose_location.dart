@@ -25,8 +25,8 @@ class _ChooseLocationState extends State<ChooseLocation> {
     await instance.getTime();
     Navigator.pop(context, {
       'location': instance.location,
-      'time': instance.time,
       'flag': instance.flag,
+      'time': instance.time,
       'isDay': instance.isDay,
     });
   }

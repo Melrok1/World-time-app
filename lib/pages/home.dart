@@ -15,7 +15,7 @@ class _HomeState extends State<Home> {
 
     // retrieve the imported data from loading.dart
     data = data.isNotEmpty ? data : ModalRoute.of(context).settings.arguments;
-    print(data);
+    //print(data);
 
     // day and night settings
     String bgImage = data['isDay']? 'day.png' : 'night.png';
